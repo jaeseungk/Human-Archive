@@ -1,9 +1,246 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="ko">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Human Archive</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0F1117;
+    color:white;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    overflow:hidden;
+}
+
+.container{
+    position:relative;
+    width:100vw;
+    height:100vh;
+}
+
+.header{
+    text-align:center;
+    padding-top:40px;
+    position:relative;
+    z-index:10;
+}
+
+h1{
+    font-size:3rem;
+    font-weight:300;
+    letter-spacing:4px;
+}
+
+.subtitle{
+    margin-top:20px;
+    color:#cfcfcf;
+    font-size:0.95rem;
+    line-height:1.7;
+}
+
+.categories{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+    font-size:0.9rem;
+}
+
+.strength{color:#4A6FA5;}
+.weakness{color:#B05A5A;}
+.experience{color:#D9A441;}
+.value{color:#6FA37A;}
+.emotion{color:#8C6BB1;}
+.undefined{color:#B8B8B8;}
+
+.field{
+    margin-top:20px;
+}
+
+select,input,button{
+    border:none;
+    padding:12px;
+    border-radius:8px;
+}
+
+input{
+    width:300px;
+}
+
+button{
+    cursor:pointer;
+}
+
+.canvas{
+    position:absolute;
+    inset:0;
+}
+
+.bubble{
+    position:absolute;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:10px;
+    color:white;
+    backdrop-filter:blur(6px);
+    font-size:12px;
+    overflow:hidden;
+    animation:float 18s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-25px);}
+    100%{transform:translateY(0px);}
+}
+
+.footer{
+    position:absolute;
+    bottom:25px;
+    width:100%;
+    text-align:center;
+    z-index:10;
+}
+
+.count{
+    margin-bottom:15px;
+    color:#d0d0d0;
+}
+
+.message{
+    color:#f1f1f1;
+    line-height:1.8;
+    font-size:0.95rem;
+}
+
+.signature{
+    margin-top:18px;
+    color:#7f7f7f;
+    font-size:0.8rem;
+}
+</style>
+
 </head>
+
 <body>
-Loading...
+
+<div class="container">
+
+<div class="header">
+
+<h1>Human Archive</h1>
+
+<div class="subtitle">
+당신을 표현할 수 있는 단어 혹은 문장을 적어주세요.<br>
+예) 장점, 단점부터 개인적 경험, 가치관까지 모두 좋습니다.
+</div>
+
+<div class="categories">
+<span class="strength">장점</span>
+<span class="weakness">단점</span>
+<span class="experience">경험</span>
+<span class="value">가치관</span>
+<span class="emotion">감정</span>
+<span class="undefined">정의하기 어려움</span>
+</div>
+
+<div class="field">
+<select id="category">
+<option value="strength">장점</option>
+<option value="weakness">단점</option>
+<option value="experience">경험</option>
+<option value="value">가치관</option>
+<option value="emotion">감정</option>
+<option value="undefined">정의하기 어려움</option>
+</select>
+
+<input id="textInput" placeholder="당신의 이야기를 적어주세요">
+
+<button onclick="createBubble()">등록</button>
+
+</div>
+
+</div>
+
+<div id="canvas" class="canvas"></div>
+
+<div class="footer">
+
+<div class="count">
+현재 <span id="count">0</span>명이 참여했습니다.
+</div>
+
+<div class="message">
+수백 명의 인간이 남긴 수백 개의 이야기.<br>
+AI는 이 단어들을 학습할 수는 있다.<br>
+하지만 AI는 '자신만의 이야기'를 가질 수 있을까?
+</div>
+
+<div class="signature">
+Human Archive · jaeseungk
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const colors={
+strength:"#4A6FA5",
+weakness:"#B05A5A",
+experience:"#D9A441",
+value:"#6FA37A",
+emotion:"#8C6BB1",
+undefined:"#B8B8B8"
+};
+
+let count=0;
+
+function createBubble(){
+
+const text=document.getElementById("textInput").value.trim();
+const category=document.getElementById("category").value;
+
+if(!text) return;
+
+const bubble=document.createElement("div");
+
+bubble.className="bubble";
+
+bubble.style.background=colors[category];
+
+bubble.style.width="100px";
+bubble.style.height="100px";
+
+bubble.style.left=Math.random()*85+"%";
+bubble.style.top=(25+Math.random()*45)+"%";
+
+bubble.textContent=text.length>12 ? text.slice(0,12)+"..." : text;
+
+bubble.title=text;
+
+document.getElementById("canvas").appendChild(bubble);
+
+count++;
+document.getElementById("count").innerText=count;
+
+document.getElementById("textInput").value="";
+}
+
+</script>
+
 </body>
 </html>
