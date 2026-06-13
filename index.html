@@ -148,6 +148,36 @@ button{
     opacity:1;
 }
 
+    .modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.75);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.modal-content{
+    width:90%;
+    max-width:500px;
+    background:#161A22;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.modal-category{
+    font-size:0.9rem;
+    opacity:0.7;
+    margin-bottom:15px;
+}
+
+.modal-text{
+    line-height:1.8;
+    font-size:1rem;
+    word-break:keep-all;
+}
 </style>
 
 </head>
@@ -302,6 +332,18 @@ data.text.length>12
 
 bubble.title=data.text;
 
+bubble.addEventListener("click",()=>{
+
+document.getElementById("modal").style.display="flex";
+
+document.getElementById("modalCategory").innerText =
+data.category;
+
+document.getElementById("modalText").innerText =
+data.text;
+
+});
+
 canvas.appendChild(bubble);
 }
 
@@ -317,11 +359,28 @@ drawBubble(doc.id,doc.data());
 });
 
 });
+    
+document.getElementById("modal")
+.addEventListener("click",()=>{
+
+document.getElementById("modal").style.display="none";
+
+});
 
 </script>
 
 
+<div id="modal" class="modal">
 
+  <div class="modal-content">
+
+    <div id="modalCategory" class="modal-category"></div>
+
+    <div id="modalText" class="modal-text"></div>
+
+  </div>
+
+</div>
 
 </body>
 </html>
