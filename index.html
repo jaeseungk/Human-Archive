@@ -130,6 +130,24 @@ button{
     color:#7f7f7f;
     font-size:0.8rem;
 }
+.toast{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    padding:12px 20px;
+    border-radius:12px;
+    opacity:0;
+    transition:0.4s;
+    z-index:999;
+}
+
+.toast.show{
+    opacity:1;
+}
+
 </style>
 
 </head>
@@ -175,11 +193,14 @@ button{
 </div>
 
 <div id="canvas" class="canvas"></div>
-
+<div id="toast" class="toast">
+당신의 이야기가 아카이브에 기록되었습니다.
+</div>
+    
 <div class="footer">
 
 <div class="count">
-현재 <span id="count">0</span>명이 참여했습니다.
+현재 <span id="count">0</span>개의 이야기가 기록되었습니다.
 </div>
 
 <div class="message">
@@ -248,7 +269,14 @@ createdAt:Date.now()
 
 document.getElementById("textInput").value="";
 }
+    
+const toast = document.getElementById("toast");
 
+toast.classList.add("show");
+
+setTimeout(() => {
+  toast.classList.remove("show");
+}, 2000);
 function drawBubble(id,data){
 
 if(rendered.has(id)) return;
