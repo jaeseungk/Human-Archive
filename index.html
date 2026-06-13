@@ -196,9 +196,30 @@ Human Archive · jaeseungk
 
 </div>
 
-<script>
+<script type="module">
 
-const colors={
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+getFirestore,
+collection,
+addDoc,
+onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyAK0m0WvDP5FeE2BNBlXTSFwMRYynek3ds",
+authDomain: "human-archive-7fc72.firebaseapp.com",
+projectId: "human-archive-7fc72",
+storageBucket: "human-archive-7fc72.firebasestorage.app",
+messagingSenderId: "34294120671",
+appId: "1:34294120671:web:dbc5dd1b8e4c63bcff296a",
+measurementId: "G-TEYR05EMK9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const colors = {
 strength:"#4A6FA5",
 weakness:"#B05A5A",
 experience:"#D9A441",
@@ -207,20 +228,38 @@ emotion:"#8C6BB1",
 undefined:"#B8B8B8"
 };
 
-let count=0;
+const canvas = document.getElementById("canvas");
+const countEl = document.getElementById("count");
 
-function createBubble(){
+let rendered = new Set();
+
+window.createBubble = async function(){
 
 const text=document.getElementById("textInput").value.trim();
 const category=document.getElementById("category").value;
 
 if(!text) return;
 
+await addDoc(collection(db,"stories"),{
+text,
+category,
+createdAt:Date.now()
+});
+
+document.getElementById("textInput").value="";
+}
+
+function drawBubble(id,data){
+
+if(rendered.has(id)) return;
+
+rendered.add(id);
+
 const bubble=document.createElement("div");
 
 bubble.className="bubble";
 
-bubble.style.background=colors[category];
+bubble.style.background=colors[data.category] || "#999";
 
 bubble.style.width="100px";
 bubble.style.height="100px";
@@ -228,19 +267,33 @@ bubble.style.height="100px";
 bubble.style.left=Math.random()*85+"%";
 bubble.style.top=(25+Math.random()*45)+"%";
 
-bubble.textContent=text.length>12 ? text.slice(0,12)+"..." : text;
+bubble.textContent=
+data.text.length>12
+? data.text.slice(0,12)+"..."
+: data.text;
 
-bubble.title=text;
+bubble.title=data.text;
 
-document.getElementById("canvas").appendChild(bubble);
-
-count++;
-document.getElementById("count").innerText=count;
-
-document.getElementById("textInput").value="";
+canvas.appendChild(bubble);
 }
 
+onSnapshot(collection(db,"stories"),(snapshot)=>{
+
+canvas.innerHTML="";
+rendered.clear();
+
+countEl.innerText=snapshot.size;
+
+snapshot.forEach((doc)=>{
+drawBubble(doc.id,doc.data());
+});
+
+});
+
 </script>
+
+
+
 
 </body>
 </html>
