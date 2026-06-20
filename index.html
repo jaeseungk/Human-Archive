@@ -346,6 +346,10 @@ emotion:"#8C6BB1",
 undefined:"#B8B8B8"
 };
 let currentMode="collective";
+    
+let personalEntries=
+JSON.parse(localStorage.getItem("personalEntries"))
+|| [];
 const canvas = document.getElementById("canvas");
 const countEl = document.getElementById("count");
 
@@ -484,7 +488,15 @@ ${input.value}
 
 document.getElementById("personalLog")
 .prepend(entry);
+personalEntries.unshift({
+text:input.value,
+time:now.toLocaleString()
+});
 
+localStorage.setItem(
+"personalEntries",
+JSON.stringify(personalEntries)
+);
 input.value="";
 
 }
