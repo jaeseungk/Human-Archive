@@ -225,7 +225,7 @@ Personal Archive
 예) 장점, 단점부터 개인적 경험, 가치관까지 모두 좋습니다.
 </div>
 
-<div class="categories">
+<div id="collectiveCategories" class="categories">
 <span class="strength">장점</span>
 <span class="weakness">단점</span>
 <span class="experience">경험</span>
@@ -444,6 +444,9 @@ document.querySelector(".container").style.overflow="auto";
 
 document.getElementById("canvas").style.display="none";
 
+document.getElementById("collectiveCategories")
+.style.display="none";
+
 document.getElementById("personalPage").style.display="block";
 
 currentMode="personal";
@@ -453,6 +456,9 @@ currentMode="personal";
 window.showCollective=function(){
 
 document.getElementById("canvas").style.display="block";
+
+document.getElementById("collectiveCategories")
+.style.display="flex";
 
 document.getElementById("personalPage").style.display="none";
 
