@@ -205,7 +205,7 @@ button{
 
 <div class="container">
 
-<div class="header">
+<div id="mainHeader" class="header">
 
 <h1>Human Archive</h1>
 
@@ -441,6 +441,9 @@ console.log("JS loaded");
 window.showPersonal=function(){
 
 document.querySelector(".container").style.overflow="auto";
+    
+document.getElementById("mainHeader")
+.style.display="none";
 
 document.getElementById("canvas").style.display="none";
 
@@ -454,6 +457,9 @@ currentMode="personal";
 }
 
 window.showCollective=function(){
+
+document.getElementById("mainHeader")
+.style.display="block";
 
 document.getElementById("canvas").style.display="block";
 
