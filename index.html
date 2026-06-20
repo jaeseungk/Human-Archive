@@ -45,7 +45,26 @@ h1{
     font-size:0.95rem;
     line-height:1.7;
 }
+.tabs{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+}
 
+.tabs button{
+    background:#1B2230;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.tabs button:hover{
+    background:#2C3950;
+}
 .categories{
     margin-top:25px;
     display:flex;
@@ -190,6 +209,17 @@ button{
 
 <h1>Human Archive</h1>
 
+<div class="tabs">
+
+<button onclick="showCollective()">
+Collective Archive
+</button>
+
+<button onclick="showPersonal()">
+Personal Archive
+</button>
+
+</div>
 <div class="subtitle">
 당신을 표현할 수 있는 단어 혹은 문장을 적어주세요.<br>
 예) 장점, 단점부터 개인적 경험, 가치관까지 모두 좋습니다.
@@ -223,6 +253,42 @@ button{
 </div>
 
 <div id="canvas" class="canvas"></div>
+    <div id="personalPage" style="display:none;">
+
+<div class="header">
+
+<h2 style="margin-top:40px;">
+지금의 당신은 어떤 상태인가요?
+</h2>
+
+<div class="subtitle">
+시간에 따라 변화하는 감정과 생각을 기록해보세요.
+</div>
+
+<div class="field">
+
+<input id="personalInput"
+placeholder="지금의 나를 기록해주세요">
+
+<button onclick="savePersonal()">
+기록
+</button>
+
+</div>
+
+<div id="personalLog"
+style="
+margin-top:40px;
+display:flex;
+flex-direction:column;
+gap:15px;
+align-items:center;
+">
+</div>
+
+</div>
+
+</div>
 <div id="toast" class="toast">
 당신의 이야기가 아카이브에 기록되었습니다.
 </div>
@@ -278,7 +344,7 @@ value:"#6FA37A",
 emotion:"#8C6BB1",
 undefined:"#B8B8B8"
 };
-
+let currentMode="collective";
 const canvas = document.getElementById("canvas");
 const countEl = document.getElementById("count");
 
@@ -366,7 +432,60 @@ document.getElementById("modal")
 document.getElementById("modal").style.display="none";
 
 });
+function showPersonal(){
 
+document.querySelector(".container").style.overflow="auto";
+
+document.getElementById("canvas").style.display="none";
+
+document.getElementById("personalPage").style.display="block";
+
+currentMode="personal";
+
+}
+
+function showCollective(){
+
+document.getElementById("canvas").style.display="block";
+
+document.getElementById("personalPage").style.display="none";
+
+currentMode="collective";
+
+}
+
+function savePersonal(){
+
+const input=document.getElementById("personalInput");
+
+if(!input.value.trim()) return;
+
+const entry=document.createElement("div");
+
+entry.style.background="rgba(255,255,255,0.08)";
+entry.style.padding="14px 20px";
+entry.style.borderRadius="16px";
+entry.style.width="80%";
+entry.style.maxWidth="500px";
+
+const now=new Date();
+
+entry.innerHTML=`
+<div style="opacity:0.6;font-size:0.8rem;margin-bottom:6px;">
+${now.toLocaleString()}
+</div>
+
+<div>
+${input.value}
+</div>
+`;
+
+document.getElementById("personalLog")
+.prepend(entry);
+
+input.value="";
+
+}
 </script>
 
 
