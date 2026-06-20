@@ -432,7 +432,7 @@ document.getElementById("modal")
 document.getElementById("modal").style.display="none";
 
 });
-function showPersonal(){
+window.showPersonal=function(){
 
 document.querySelector(".container").style.overflow="auto";
 
@@ -444,7 +444,7 @@ currentMode="personal";
 
 }
 
-function showCollective(){
+window.showCollective=function(){
 
 document.getElementById("canvas").style.display="block";
 
@@ -454,7 +454,7 @@ currentMode="collective";
 
 }
 
-function savePersonal(){
+window.savePersonal=function(){
 
 const input=document.getElementById("personalInput");
 
