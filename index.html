@@ -702,24 +702,10 @@ newText;
 
 }
 
-}
 function formatTime(dateString){
 
 const now=new Date();
-
 const past=new Date(dateString);
-
-const diff=Math.floor((now-past)/1000);
-
-if(diff<60){
-return "방금 전";
-}
-function formatTime(dateString){
-
-const now=new Date();
-
-const past=new Date(dateString);
-
 const diff=Math.floor((now-past)/1000);
 
 if(diff<60){
@@ -781,9 +767,7 @@ ${entry.text}
 log.appendChild(item);
 
 });
-
 }
-    
 </script>
 
 
