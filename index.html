@@ -131,7 +131,7 @@ position:absolute;
 width:220px;
 min-height:140px;
 
-padding:22px;
+padding:24px;
 
 background:rgba(255,255,255,0.06);
 
@@ -141,52 +141,93 @@ border:1px solid rgba(255,255,255,0.08);
 
 color:white;
 
-border-radius:24px;
+border-radius:22px;
 
 animation:float 16s ease-in-out infinite;
 
 box-shadow:0 0 30px rgba(255,255,255,0.03);
 
-overflow:hidden;
+overflow:visible;
+
 }
 
+/* 오른쪽 돌기 */
 .puzzlePiece::before{
 
 content:"";
 
 position:absolute;
 
-top:45px;
-right:-18px;
+top:42px;
+right:-22px;
 
-width:38px;
-height:38px;
+width:44px;
+height:44px;
 
 background:rgba(255,255,255,0.06);
 
+border:1px solid rgba(255,255,255,0.08);
+
 border-radius:50%;
 
-border:1px solid rgba(255,255,255,0.08);
+z-index:2;
 
 }
 
+/* 왼쪽 홈 */
 .puzzlePiece::after{
 
 content:"";
 
 position:absolute;
 
-top:80px;
-left:-20px;
+top:78px;
+left:-24px;
 
-width:40px;
-height:40px;
+width:48px;
+height:48px;
 
 background:#0F1117;
 
 border-radius:50%;
 
-border:1px solid rgba(255,255,255,0.03);
+z-index:3;
+
+}
+
+/* 위 돌기 */
+.puzzlePiece .topKnob{
+
+position:absolute;
+
+top:-22px;
+left:80px;
+
+width:44px;
+height:44px;
+
+background:rgba(255,255,255,0.06);
+
+border:1px solid rgba(255,255,255,0.08);
+
+border-radius:50%;
+
+}
+
+/* 아래 홈 */
+.puzzlePiece .bottomHole{
+
+position:absolute;
+
+bottom:-24px;
+right:60px;
+
+width:48px;
+height:48px;
+
+background:#0F1117;
+
+border-radius:50%;
 
 }
 .footer{
@@ -656,6 +697,8 @@ ${formatTime(entry.time)}
 <div>
 ${entry.text}
 </div>
+<div class="topKnob"></div>
+<div class="bottomHole"></div>
 
 `;
 
