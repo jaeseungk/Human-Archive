@@ -128,14 +128,20 @@ button{
 
 position:absolute;
 
-width:130px;
-min-height:80px;
+width:80px;
+min-height:50px;
 
-padding:16px;
+padding:8px;
 
-background:rgba(255,255,255,0.06);
-
+background:
+linear-gradient(
+135deg,
+rgba(180,160,255,0.18),
+rgba(120,170,255,0.12),
+rgba(255,180,220,0.10)
+);
 backdrop-filter:blur(14px);
+
 
 border:1px solid rgba(255,255,255,0.08);
 
@@ -145,7 +151,8 @@ border-radius:16px;
 
 animation:float 16s ease-in-out infinite;
 
-box-shadow:0 0 30px rgba(255,255,255,0.03);
+box-shadow:
+0 0 25px rgba(180,160,255,0.08);
 
 overflow:visible;
 
@@ -166,7 +173,7 @@ height:28px;
 
 background:rgba(255,255,255,0.06);
 
-border:1px solid rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.05)
 
 border-radius:50%;
 
@@ -200,11 +207,11 @@ z-index:3;
 
 position:absolute;
 
-top:-22px;
-left:80px;
+top:-6px;
+left:32px;
 
-width:44px;
-height:44px;
+width:12px;
+height:12px;
 
 background:rgba(255,255,255,0.06);
 
@@ -219,11 +226,11 @@ border-radius:50%;
 
 position:absolute;
 
-bottom:-24px;
-right:60px;
+bottom:-6px;
+right:28px;
 
-width:48px;
-height:48px;
+width:12px;
+height:12px;
 
 background:#0F1117;
 
@@ -384,10 +391,11 @@ placeholder="지금의 나를 기록해주세요">
 
 <div id="personalLog"
 style="
-margin-top:220px;
+margin-top:260px;
 position:relative;
 width:100%;
 height:1200px;
+overflow:hidden;
 ">
 </div>
 
@@ -616,6 +624,7 @@ entry.style.left=
 Math.random()*75+"%";
 
 entry.style.top=
+(200 + Math.random()*700)+"px";
 Math.random()*900+"px";
 const now=new Date();
 
