@@ -677,6 +677,12 @@ log.innerHTML="";
 personalEntries.forEach((entry)=>{
 
 const item=document.createElement("div");
+item.className="puzzlePiece";
+item.style.left=
+Math.random()*70+"%";
+
+item.style.top=
+Math.random()*70+"%";
 
 item.style.background="rgba(255,255,255,0.08)";
 item.style.padding="14px 20px";
