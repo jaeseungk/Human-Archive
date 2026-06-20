@@ -638,8 +638,28 @@ entry.innerHTML=`
 ${now.toLocaleString()}
 </div>
 
-<div>
+<div class="text">
 ${input.value}
+</div>
+<div style="
+margin-top:10px;
+display:flex;
+gap:8px;
+justify-content:center;
+font-size:0.7rem;
+opacity:0.6;
+">
+
+<span onclick="editEntry(this)"
+style="cursor:pointer;">
+✏ edit
+</span>
+
+<span onclick="deleteEntry(this)"
+style="cursor:pointer;">
+🗑 delete
+</span>
+
 </div>
 `;
 
@@ -656,6 +676,43 @@ JSON.stringify(personalEntries)
 );
 input.value="";
 
+}
+   function deleteEntry(el){
+
+el.closest(".puzzlePiece").remove();
+
+}
+
+function editEntry(el){
+
+const piece=el.closest(".puzzlePiece");
+
+const text=
+piece.querySelector(".text").innerText;
+
+const newText=prompt(
+"기록을 수정하세요",
+text
+);
+
+if(newText){
+
+piece.querySelector(".text").innerText=
+newText;
+
+}
+
+}
+function formatTime(dateString){
+
+const now=new Date();
+
+const past=new Date(dateString);
+
+const diff=Math.floor((now-past)/1000);
+
+if(diff<60){
+return "방금 전";
 }
 function formatTime(dateString){
 
