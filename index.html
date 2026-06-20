@@ -293,8 +293,21 @@ align-items:center;
 <div id="toast" class="toast">
 당신의 이야기가 아카이브에 기록되었습니다.
 </div>
+
+<div id="personalFooter" class="footer" style="display:none;">
+
+<div class="message">
+방금의 당신과 지금의 당신은<br>
+같은 사람인가요?<br><br>
+
+인간은 끊임없이 변화한다.<br>
+그리고 그 변화의 기록이<br>
+곧 ‘나’라는 존재일지도 모른다.
+</div>
+
+</div>
     
-<div class="footer">
+<div id="collectiveFooter" class="footer">
 
 <div class="count">
 현재 <span id="count">0</span>개의 이야기가 기록되었습니다.
@@ -452,6 +465,12 @@ document.getElementById("collectiveCategories")
 
 document.getElementById("personalPage").style.display="block";
 
+document.getElementById("collectiveFooter")
+.style.display="none";
+
+document.getElementById("personalFooter")
+.style.display="block";
+
 loadPersonalEntries();
 
 currentMode="personal";
@@ -469,6 +488,12 @@ document.getElementById("collectiveCategories")
 .style.display="flex";
 
 document.getElementById("personalPage").style.display="none";
+
+document.getElementById("collectiveFooter")
+.style.display="block";
+
+document.getElementById("personalFooter")
+.style.display="none";
 
 currentMode="collective";
 
