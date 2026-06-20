@@ -618,22 +618,34 @@ currentMode="collective";
 
 window.savePersonal = function(){
 
-const input = document.getElementById("personalInput");
+  const input = document.getElementById("personalInput");
 
-if(!input.value.trim()) return;
+  if(!input.value.trim()) return;
 
-const entry = document.createElement("div");
+  const entry = document.createElement("div");
 
-entry.className = "puzzlePiece";
+  entry.className = "puzzlePiece";
 
-entry.style.left = Math.random() * 75 + "%";
-entry.style.top = (200 + Math.random() * 700) + "px";
+  entry.style.left = Math.random() * 75 + "%";
+  entry.style.top = (200 + Math.random() * 700) + "px";
 
-const now = new Date();
+  const now = new Date();
 
-entry.innerHTML = `
-<div style="opacity:0.6;font-size:0.8rem;margin-bottom:6px;">
-${now.toLocaleString()}
+  entry.innerHTML = `
+    <div style="opacity:0.6;font-size:0.8rem;margin-bottom:6px;">
+      ${now.toLocaleString()}
+    </div>
+
+    <div class="text">
+      ${input.value}
+    </div>
+  `;
+
+  document.getElementById("personalLog").prepend(entry);
+
+  input.value = "";
+
+};
 </div>
 
 <div class="text">
