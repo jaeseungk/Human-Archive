@@ -507,25 +507,39 @@ if(!input.value.trim()) return;
 
 const entry=document.createElement("div");
 
-entry.style.background="rgba(255,255,255,0.08)";
-entry.style.padding="14px 20px";
-entry.style.borderRadius="16px";
-entry.style.clipPath=
-"polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%)";
+entry.style.background=
+"rgba(255,255,255,0.06)";
 
-entry.style.backdropFilter="blur(10px)";
+entry.style.backdropFilter=
+"blur(14px)";
 
-entry.style.opacity="0.9";
+entry.style.border=
+"1px solid rgba(255,255,255,0.08)";
 
-entry.style.animation="float 12s ease-in-out infinite";
-entry.style.width="80%";
-entry.style.maxWidth="500px";
+entry.style.padding="20px";
 
-entry.style.position="relative";
+entry.style.width="220px";
+
+entry.style.minHeight="140px";
+
+entry.style.position="absolute";
 
 entry.style.left=
-(Math.random()*40-20)+"px";
+Math.random()*70+"%";
 
+entry.style.top=
+Math.random()*70+"%";
+
+entry.style.borderRadius=
+"43% 57% 63% 37% / 40% 43% 57% 60%";
+
+entry.style.animation=
+"float 16s ease-in-out infinite";
+
+entry.style.boxShadow=
+"0 0 30px rgba(255,255,255,0.03)";
+
+entry.style.opacity="0.9";
 const now=new Date();
 
 entry.innerHTML=`
