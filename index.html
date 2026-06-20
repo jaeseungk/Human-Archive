@@ -452,6 +452,8 @@ document.getElementById("collectiveCategories")
 
 document.getElementById("personalPage").style.display="block";
 
+loadPersonalEntries();
+
 currentMode="personal";
 
 }
@@ -512,6 +514,45 @@ JSON.stringify(personalEntries)
 input.value="";
 
 }
+
+function loadPersonalEntries(){
+
+const log=document.getElementById("personalLog");
+
+log.innerHTML="";
+
+personalEntries.forEach((entry)=>{
+
+const item=document.createElement("div");
+
+item.style.background="rgba(255,255,255,0.08)";
+item.style.padding="14px 20px";
+item.style.borderRadius="16px";
+item.style.width="80%";
+item.style.maxWidth="500px";
+
+item.innerHTML=`
+
+<div style="
+opacity:0.5;
+font-size:0.75rem;
+margin-bottom:8px;
+">
+${entry.time}
+</div>
+
+<div>
+${entry.text}
+</div>
+
+`;
+
+log.appendChild(item);
+
+});
+
+}
+    
 </script>
 
 
