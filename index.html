@@ -393,10 +393,9 @@ bubble.style.left=Math.random()*85+"%";
 bubble.style.top=(25+Math.random()*45)+"%";
 
 bubble.textContent=
-data.text.length>12
-? data.text.slice(0,12)+"..."
-: data.text;
-
+(data.text || "").length>12
+? (data.text || "").slice(0,12)+"..."
+: (data.text || "");
 bubble.title=data.text;
 
 bubble.addEventListener("click",()=>{
